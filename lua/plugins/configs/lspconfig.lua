@@ -72,8 +72,25 @@ require("lspconfig").clangd.setup {
     client.server_capabilities.signatureHelpProvider = false
     M.on_attach(client, bufnr)
   end,
-  capabilities = M.capabilities
+  capabilities = M.capabilities,
 }
 
+local util = require "lspconfig.util"
+local port = os.getenv "GDScript_Port" or "6005"
+local cmd = { "nc", "localhost", port }
+
+if vim.fn.has "nvim-0.8" == 1 then
+  cmd = vim.lsp.rpc.connect("127.0.0.1", port)
+end
+
+require("lspconfig").gdscript.setup {}
+require("lspconfig").cmake.setup {
+  settings = {
+    filetypes = {
+      "cmake",
+      "CMakeLists.txt",
+    },
+  },
+}
 
 return M
