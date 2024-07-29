@@ -1,12 +1,12 @@
 local options = {
-  ensure_installed = { "lua", "vim", "vimdoc", "cpp" },
+	ensure_installed = { "lua", "vim", "vimdoc", "cpp", "glsl" },
 
-  highlight = {
-    enable = true,
-    use_languagetree = true,
-  },
+	highlight = {
+		enable = true,
+		use_languagetree = true,
+	},
 
-  indent = { enable = true },
+	indent = { enable = true },
 }
 
 return options
