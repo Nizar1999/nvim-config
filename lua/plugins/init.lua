@@ -1,6 +1,76 @@
 -- All plugins have lazy=true by default,to load a plugin on startup just lazy=false
 -- List of all default plugins & their definitions
 local default_plugins = {
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+		init = function()
+			require "plugins.configs.harpoon"
+		end,
+	},
+
+	-- Lua
+	{
+		"folke/zen-mode.nvim",
+		lazy = false,
+		init = function()
+			require("core.utils").load_mappings "zen_mode"
+		end,
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
+
+	{
+		"Badhi/nvim-treesitter-cpp-tools",
+		lazy = false,
+		init = function()
+			require("core.utils").load_mappings "cpp_tools"
+		end,
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		-- Optional: Configuration
+		opts = function()
+			local options = {
+				preview = {
+					quit = "q",                   -- optional keymapping for quit preview
+					accept = "<tab>",             -- optional keymapping for accept preview
+				},
+				header_extension = "h",           -- optional
+				source_extension = "cpp",         -- optional
+				custom_define_class_function_commands = { -- optional
+					TSCppImplWrite = {
+						output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
+					},
+					--[[
+                <your impl function custom command name> = {
+                    output_handle = function (str, context)
+                        -- string contains the class implementation
+                        -- do whatever you want to do with it
+                    end
+                }
+                ]]
+				},
+			}
+			return options
+		end,
+		-- End configuration
+		config = true,
+	},
+
+	{
+		"kana/vim-altr",
+		lazy = false,
+		init = function()
+			require("core.utils").load_mappings "altr"
+		end,
+		config = function()
+			--vim.fn["altr#define('plugin/%.vim', 'doc/%.txt')"]()
+			vim.cmd [[call altr#define('%.vert', '%.frag')]]
+		end,
+	},
 
 	{
 		"habamax/vim-godot",
@@ -412,13 +482,12 @@ local default_plugins = {
 		"Civitasv/cmake-tools.nvim",
 		lazy = false,
 		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
 		init = function()
 			require("core.utils").load_mappings "cmake"
 		end,
 		config = function()
-			require("cmake-tools").setup {
-				-- Configuration here, or leave empty to use defaults
-			}
+			require("cmake-tools").setup {}
 		end,
 	},
 }
