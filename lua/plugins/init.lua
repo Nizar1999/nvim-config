@@ -35,11 +35,11 @@ local default_plugins = {
 		opts = function()
 			local options = {
 				preview = {
-					quit = "q",                   -- optional keymapping for quit preview
-					accept = "<tab>",             -- optional keymapping for accept preview
+					quit = "q",               -- optional keymapping for quit preview
+					accept = "<tab>",         -- optional keymapping for accept preview
 				},
-				header_extension = "h",           -- optional
-				source_extension = "cpp",         -- optional
+				header_extension = "h",       -- optional
+				source_extension = "cpp",     -- optional
 				custom_define_class_function_commands = { -- optional
 					TSCppImplWrite = {
 						output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
@@ -58,6 +58,18 @@ local default_plugins = {
 		end,
 		-- End configuration
 		config = true,
+	},
+
+	{
+		"neanias/everforest-nvim",
+		config = function()
+			require("everforest").setup({
+				-- Your config here
+			})
+		end,
+		version = false,
+		lazy = false,
+		priority = 1000, -- make sure to load this before all the other start plugins
 	},
 
 	{
