@@ -1,21 +1,50 @@
-require "core"
+local opt = vim.opt
+local g = vim.g
 
-local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
+g.mapleader = " "
 
-if custom_init_path then
-	dofile(custom_init_path)
-end
+-- Term Setup
+opt.termguicolors = true
 
-require("core.utils").load_mappings()
+-- Clipboard
+opt.clipboard = "unnamedplus"
 
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+-- Highlight line cursor is currently on
+opt.cursorline = true
 
--- bootstrap lazy.nvim!
-if not vim.loop.fs_stat(lazypath) then
-	require("core.bootstrap").gen_chadrc_template()
-	require("core.bootstrap").lazy(lazypath)
-end
+-- Line numbers
+opt.number = true
+opt.numberwidth = 2
+opt.relativenumber = true
 
-dofile(vim.g.base46_cache .. "defaults")
-vim.opt.rtp:prepend(lazypath)
-require "plugins"
+-- Always show cursor position
+opt.ruler = true
+
+-- Always display status bar
+opt.laststatus = 2
+
+-- Enable mouse for scrolling and resizing
+opt.mouse = a
+
+-- Set folding to be handled by treesitter
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldenable = false
+
+-- Indentation
+opt.shiftwidth = 4
+opt.smartindent = true
+opt.tabstop = 4
+opt.softtabstop = 4
+
+-- Init lazy and consequent plugins
+require("config.lazy")
+
+-- Theme
+vim.cmd("colorscheme ayu-dark")
+
+-- Init AutoCommands
+require("config.commands")
+
+-- Init Mappings
+require("config.mappings")
