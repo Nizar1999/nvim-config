@@ -30,6 +30,11 @@ return {
 
 			-- clangd for C/C++ support
 			lspconfig.clangd.setup({
+				onattach = function(client, bufnr)
+					-- Disable clangd's formatting capability
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+				end,
 				flags = {
 					debounce_text_changes = 150,
 				},

@@ -1,5 +1,12 @@
 local map = vim.keymap.set
 
+-- Clear search highlight
+map("n", "<leader>nh", ":nohlsearch<CR>", { desc = "Clear search highlighting" })
+
+-- Indenting Selected Text
+map("v", "<Tab>", ">gv", { desc = "Indent forward" })
+map("v", "<S-Tab>", "<gv", { desc = "Indent backward" })
+
 -- Adding new line without going into insert mode
 map("n", "<leader>o", ':<C-u>call append(line("."), repeat([""], v:count1))<CR>', { desc = "New line (after)" })
 map("n", "<leader>O", ':<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>', { desc = "New line (before)" })
@@ -13,8 +20,8 @@ map("n", "<leader>D", "ggdG<cr>", { desc = "Delete All Text" })
 map("n", "<leader>Y", "ggyG<cr>", { desc = "Copy All Text" })
 
 -- Shift + Up/Down to move line up/down
-map("n", "<S-K>", "yyddkP", { desc = "Move Line Up" })
-map("n", "<S-J>", "yyddp", { desc = "Move Line Down" })
+map("n", "<S-Up>", "yyddkP", { desc = "Move Line Up" })
+map("n", "<S-Down>", "yyddp", { desc = "Move Line Down" })
 
 -- Save with cntrl-S
 map("n", "<C-s>", ":w<CR>", { desc = "Save", silent = true })
@@ -88,3 +95,59 @@ map(
 	"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
 	{ desc = "Toggle comment" }
 )
+
+-- LSP Diagnostics
+map("n", "[d", function()
+	vim.diagnostic.goto_prev({ float = { border = "rounded" } })
+end, { desc = "Goto prev" })
+
+map("n", "]d", function()
+	vim.diagnostic.goto_next({ float = { border = "rounded" } })
+end, { desc = "Goto next" })
+
+map("n", "<leader>q", function()
+	vim.diagnostic.setloclist()
+end, { desc = "Diagnostic setloclist" })
+
+map("n", "<leader>lf", function()
+	vim.diagnostic.open_float({ border = "rounded" })
+end, { desc = "Floating diagnostic" })
+
+-- LSP Actions
+map("n", "<leader>lD", function()
+	vim.lsp.buf.declaration()
+end, { desc = "LSP declaration" })
+
+map("n", "<leader>ld", function()
+	vim.lsp.buf.definition()
+end, { desc = "LSP definition" })
+
+map("n", "<leader>li", function()
+	vim.lsp.buf.implementation()
+end, { desc = "LSP implementation" })
+
+map("n", "<leader>lh", function()
+	vim.lsp.buf.hover()
+end, { desc = "LSP hover" })
+
+map("n", "<leader>lr", function()
+	vim.lsp.buf.references()
+end, { desc = "LSP references" })
+
+map("n", "<leader>lt", function()
+	vim.lsp.buf.type_definition()
+end, { desc = "LSP definition type" })
+
+map("n", "<leader>lr", function()
+	vim.lsp.buf.rename()
+end, { desc = "LSP rename" })
+
+map("n", "<leader>ca", function()
+	vim.lsp.buf.code_action()
+end, { desc = "LSP code action" })
+
+map("v", "<leader>ca", function()
+	vim.lsp.buf.code_action()
+end, { desc = "LSP code action" })
+
+-- map("n", "<leader>ls", function() vim.lsp.buf.signature_help() end, { desc = "LSP signature help" })

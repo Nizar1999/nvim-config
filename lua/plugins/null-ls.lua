@@ -23,6 +23,14 @@ return {
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then
+						local callback = function()
+							vim.lsp.buf.format({
+								bufnr = bufnr,
+								filter = function(c)
+									return c.name == "null-ls"
+								end,
+							})
+						end
 						vim.api.nvim_clear_autocmds({
 							group = augroup,
 							buffer = bufnr,
@@ -30,9 +38,7 @@ return {
 						vim.api.nvim_create_autocmd("BufWritePre", {
 							group = augroup,
 							buffer = bufnr,
-							callback = function()
-								vim.lsp.buf.format({ bufnr = bufnr })
-							end,
+							callback = callback,
 						})
 					end
 				end,

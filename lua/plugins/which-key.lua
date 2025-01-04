@@ -1,6 +1,6 @@
 return {
 	"folke/which-key.nvim",
-	dependencies = { "folke/noice.nvim" },
+	dependencies = { "folke/noice.nvim", "hrsh7th/nvim-cmp" },
 	event = "VeryLazy",
 	opts = {
 		-- your configuration comes here
