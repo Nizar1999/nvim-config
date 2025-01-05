@@ -62,6 +62,7 @@ map("n", "<leader>fb", "<cmd>Telescope file_browser<cr>", { desc = "File Browser
 
 -- CMake
 map("n", "<leader>bb", "<cmd>CMakeBuild<cr>", { desc = "CMake Build" })
+map("n", "<leader>bt", "<cmd>CMakeSelectBuildTarget<cr>", { desc = "CMake Select Target" })
 
 -- NvTerm
 map("n", "<A-v>", "<cmd>lua require('nvterm.terminal').toggle('vertical')<cr>", { desc = "Toggle vertical term" })
