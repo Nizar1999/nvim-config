@@ -59,7 +59,7 @@ return {
 				},
 			},
 		})
-		local extensions_list = { "file_browser" }
+		local extensions_list = {}
 		local telescope = require("telescope")
 
 		for _, ext in ipairs(extensions_list) do

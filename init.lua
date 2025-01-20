@@ -41,7 +41,7 @@ opt.softtabstop = 4
 require("config.lazy")
 
 -- Theme
-vim.cmd("colorscheme ayu-dark")
+vim.cmd("colorscheme ayu-mirage")
 
 -- Init AutoCommands
 require("config.commands")

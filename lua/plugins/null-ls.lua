@@ -16,7 +16,6 @@ return {
 					null_ls.builtins.formatting.stylua,
 
 					-- Linter sources
-					null_ls.builtins.diagnostics.cppcheck,
 
 					-- Code actions
 					null_ls.builtins.code_actions.gitsigns, -- Gitsigns for Git actions

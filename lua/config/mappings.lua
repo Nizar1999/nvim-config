@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 -- Clear search highlight
-map("n", "<leader>nh", ":nohlsearch<CR>", { desc = "Clear search highlighting" })
+map("n", "<leader>ch", ":nohlsearch<CR>", { desc = "Clear search highlighting" })
 
 -- Indenting Selected Text
 map("v", "<Tab>", ">gv", { desc = "Indent forward" })
@@ -25,6 +25,8 @@ map("n", "<S-Down>", "yyddp", { desc = "Move Line Down" })
 
 -- Save with cntrl-S
 map("n", "<C-s>", ":w<CR>", { desc = "Save", silent = true })
+
+map("n", "<leader>mt", ":0r LICENSE<CR>", { desc = "Insert License", silent = true })
 
 -- Fast searching highlighted text with Google
 -- Requires use of the xdg-open command + wslu if you're on wsl (after installing wslu, run sudo ln -s ../../bin/wslview /usr/local/bin/xdg-open)
@@ -152,3 +154,6 @@ map("v", "<leader>ca", function()
 end, { desc = "LSP code action" })
 
 -- map("n", "<leader>ls", function() vim.lsp.buf.signature_help() end, { desc = "LSP signature help" })
+
+-- Altr
+map("n", "<leader>a", "<Plug>(altr-forward)", { desc = "Alternate files" })
