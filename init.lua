@@ -16,6 +16,7 @@ opt.cursorline = true
 opt.number = true
 opt.numberwidth = 2
 opt.relativenumber = true
+opt.statuscolumn = "%s %l %r "
 
 -- Always show cursor position
 opt.ruler = true

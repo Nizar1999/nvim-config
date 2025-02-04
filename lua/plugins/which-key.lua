@@ -1,6 +1,11 @@
 return {
 	"folke/which-key.nvim",
-	dependencies = { "folke/noice.nvim", "hrsh7th/nvim-cmp", "natecraddock/workspaces.nvim", "Civitasv/cmake-tools.nvim"  },
+	dependencies = {
+		"folke/noice.nvim",
+		"hrsh7th/nvim-cmp",
+		"natecraddock/workspaces.nvim",
+		"Civitasv/cmake-tools.nvim",
+	},
 	event = "VeryLazy",
 	opts = {
 		-- your configuration comes here
