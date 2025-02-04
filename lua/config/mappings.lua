@@ -163,7 +163,7 @@ map("n", "<leader>k", "<cmd>lua require('pretty_hover').hover()<CR>", { desc = "
 
 -- Leetcode
 map("n", "<leader>cm", "<cmd>Leet<cr>", { desc = "Leetcode Main" })
-map("n", "<leader>cr", "<cmd>Leet run<cr>", { desc = "Leetcode Run" })
+map("n", "<leader>cx", "<cmd>Leet run<cr>", { desc = "Leetcode Run" })
 map("n", "<leader>ct", "<cmd>Leet console<cr>", { desc = "Leetcode Tests" })
 map("n", "<leader>cd", "<cmd>Leet daily<cr>", { desc = "Leetcode Daily" })
 map("n", "<leader>cs", "<cmd>Leet submit<cr>", { desc = "Leetcode Submit" })
