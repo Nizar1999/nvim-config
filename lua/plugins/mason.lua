@@ -28,25 +28,17 @@ return {
 		config = function()
 			local lspconfig = require("lspconfig")
 
-			-- clangd for C/C++ support
-			lspconfig.clangd.setup({
+			vim.lsp.config('clangd', {
 				onattach = function(client, bufnr)
-					-- Disable clangd's formatting capability
+
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
 				end,
-				flags = {
-					debounce_text_changes = 150,
-				},
-				-- Optional: Add clangd-specific settings here
 				cmd = { "clangd", "--background-index", "--clang-tidy", "--suggest-missing-includes" },
 			})
-
-			-- lua_ls for Lua support
-			lspconfig.lua_ls.setup({
-				flags = {
-					debounce_text_changes = 150,
-				},
+			vim.lsp.enable('clangd')
+			-- clangd for C/C++ support
+			vim.lsp.config('lua_ls', {
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -58,6 +50,8 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable('lua_ls')
+
 		end,
 	},
 }
